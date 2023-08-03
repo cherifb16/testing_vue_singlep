@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DIC cafe</title>
+    <link href="css/normalize.css" rel="stylesheet">
+    <link href="css/contact.css" rel="stylesheet">
+    <link href="css/validation.css" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <section class="section_inner" id="app">
+      <div class="section_title">
+        <h1>CONTACT</h1>
+        <p>Contact Us</p>
+      </div>
+      <p class="alert_color" v-if="formData.email !== formData.emailConfirm">{{ errorMessage }}</p>
+      <form action="#" method="POST" id="form">
+        <table class="contact" id="table">
+          <tr class="contact_line">
+            <td class="contact_sign"><label for="name">name</label></td>
+            <td class="contact_input">
+              <input v-model="formData.name" type="text" name="name" id="name">
+            </td>
+          </tr>
+          <tr class="contact_line">
+            <td class="contact_sign"><label for="name">area</label></td>
+            <td class="contact_input">
+              <select v-model="formData.region">
+                <option v-for="region in regions">{{ region.name }}</option>
+              </select>
+            </td>
+          </tr>
+          <tr class="contact_line">
+            <td class="contact_sign"><label for="name">Email</label></td>
+            <td class="contact_input">
+              <input v-bind:class="{ alert_bg: formData.email !== formData.emailConfirm }" v-model="formData.email"  type="email" name="email" id="email">
+            </td>
+          </tr>
+          <tr class="contact_line">
+            <td class="contact_sign"><label for="name">Email (confirmation)</label></td>
+            <td class="contact_input">
+              <input v-bind:class="{ alert_bg: formData.email !== formData.emailConfirm }" v-model="formData.emailConfirm"  type="email" name="email_confirm" id="email_confirm">
+            </td>
+          </tr>
+          <tr class="contact_content" id="content_field">
+            <td class="contact_sign"><label for="content">Contents</label></td>
+            <td class="contact_input">
+              <textarea v-model="formData.content" name="content" id="content"></textarea>
+            </td>
+          </tr>
+        </table>
+        <div class="contact_btn_area">
+          <button type="reset" class="contact_btn reset_btn">reset</button>
+          <button type="submit" class="contact_btn submit_btn">Send</button>
+        </div>
+      </form>
+      <section class="contact_confirm">
+        <h2>Confirmation of your entry</h2>
+        <p><span class="bold">name:</span><span>{{ formData.name }}</span></p>
+        <p><span class="bold">Region:</span><span>{{ formData.region }}</span></p>
+        <p><span class="bold">Email:</span><span>{{ formData.email }}</span></p>
+        <p><span class="bold">Email (confirmation):</span><span>{{ formData.emailConfirm }}</span></p>
+        <p><span class="bold">Contents:</span><span>{{ formData.content }}</span></p>
+      </section>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script type="text/javascript" src="javascripts/validation.js"></script>
+  </body>
+</html>
